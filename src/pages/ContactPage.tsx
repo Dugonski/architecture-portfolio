@@ -1,0 +1,48 @@
+import type { FormEvent } from 'react';
+import { site } from '../data/site';
+import { useI18n } from '../i18n/context';
+
+export default function ContactPage() {
+  const { t, l } = useI18n();
+
+  // Without a backend, the form opens the visitor's e-mail client pre-filled.
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const subject = `${site.name} — ${data.get('name')}`;
+    const body = `${data.get('message')}\n\n${data.get('name')} <${data.get('email')}>`;
+    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  return (
+    <section className="page container">
+      <p className="eyebrow">{site.name}</p>
+      <h1 className="page__title">{t('contact.title')}</h1>
+      <div className="contact">
+        <div className="contact__details">
+          <p>{t('contact.lead')}</p>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>
+          <span>{l(site.city)}</span>
+        </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <label>
+            {t('contact.name')}
+            <input name="name" required autoComplete="name" />
+          </label>
+          <label>
+            {t('contact.email')}
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+          <label>
+            {t('contact.message')}
+            <textarea name="message" required />
+          </label>
+          <button type="submit" className="button">
+            {t('contact.send')}
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+}
