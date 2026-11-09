@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { ProjectChapter } from '../components/ProjectChapter';
 import { RuleHeading } from '../components/RuleHeading';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
@@ -7,7 +6,6 @@ import { useI18n } from '../i18n/context';
 
 export default function HomePage() {
   const { t, l } = useI18n();
-  const [active, setActive] = useState(0);
 
   return (
     <>
@@ -35,47 +33,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contents (sumário) */}
+      {/* Projects, one chapter each */}
       <section id="sumario" className="contents container">
         <RuleHeading>{t('home.summary')}</RuleHeading>
-        <div className="summary">
-          <ol className="summary__list">
-            {projects.map((project, index) => (
-              <li key={project.slug} className="summary__item">
-                <Link
-                  to={`/projetos/${project.slug}`}
-                  className="summary__link"
-                  data-active={active === index ? '' : undefined}
-                  onMouseEnter={() => setActive(index)}
-                  onFocus={() => setActive(index)}
-                >
-                  <span>
-                    <span className="summary__name">{l(project.title)}</span>
-                    <span className="summary__tag">
-                      {t(`category.${project.category}`)}
-                      {project.model ? ` · ${t('home.has3d')}` : ''}
-                    </span>
-                  </span>
-                  <span className="summary__leader" aria-hidden="true" />
-                  <span className="summary__number">{String(index + 1).padStart(2, '0')}</span>
-                </Link>
-                <img className="summary__thumb" src={project.cover} alt="" loading="lazy" />
-              </li>
-            ))}
-          </ol>
-
-          <div className="summary__preview" aria-hidden="true">
-            {projects.map((project, index) => (
-              <img
-                key={project.slug}
-                src={project.cover}
-                alt=""
-                data-active={active === index ? '' : undefined}
-                loading={index === 0 ? 'eager' : 'lazy'}
-              />
-            ))}
-          </div>
-        </div>
+        <ol className="chapters">
+          {projects.map((project, index) => (
+            <ProjectChapter key={project.slug} project={project} index={index} total={projects.length} />
+          ))}
+        </ol>
       </section>
     </>
   );

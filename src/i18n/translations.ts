@@ -8,17 +8,19 @@ const pt = {
 
   'home.portfolio': 'Portfólio',
   'home.subtitle': 'Projetos principais',
-  'home.summary': 'Sumário',
+  'home.summary': 'Projetos',
   'home.intro':
     'Uma extensão imersiva do portfólio: cada projeto reúne renders, plantas, detalhamentos e especificações — e alguns podem ser explorados em 3D.',
   'home.has3d': 'Modelo 3D',
+  'home.sheets': 'pranchas',
+  'home.view': 'Ver projeto',
 
   'category.residential': 'Residencial',
   'category.commercial': 'Comercial',
   'category.institutional': 'Institucional',
 
   'project.label': 'Projeto',
-  'project.back': 'Sumário',
+  'project.back': 'Todos os projetos',
   'project.area': 'Área',
   'project.year': 'Ano',
   'project.category': 'Tipologia',
@@ -77,7 +79,7 @@ const pt = {
   'contact.thanks': 'Obrigada',
 
   'notFound.title': 'Página não encontrada',
-  'notFound.back': 'Voltar ao sumário',
+  'notFound.back': 'Ver os projetos',
 };
 
 export type TranslationKey = keyof typeof pt;
@@ -90,17 +92,19 @@ const en: Record<TranslationKey, string> = {
 
   'home.portfolio': 'Portfolio',
   'home.subtitle': 'Selected projects',
-  'home.summary': 'Contents',
+  'home.summary': 'Projects',
   'home.intro':
     'An immersive extension of the portfolio: each project brings together renders, plans, joinery details and specifications — and some can be explored in 3D.',
   'home.has3d': '3D model',
+  'home.sheets': 'detail sheets',
+  'home.view': 'View project',
 
   'category.residential': 'Residential',
   'category.commercial': 'Commercial',
   'category.institutional': 'Institutional',
 
   'project.label': 'Project',
-  'project.back': 'Contents',
+  'project.back': 'All projects',
   'project.area': 'Area',
   'project.year': 'Year',
   'project.category': 'Type',
@@ -159,7 +163,7 @@ const en: Record<TranslationKey, string> = {
   'contact.thanks': 'Thank you',
 
   'notFound.title': 'Page not found',
-  'notFound.back': 'Back to contents',
+  'notFound.back': 'See the projects',
 };
 
 export const translations: Record<Language, Record<TranslationKey, string>> = { pt, en };
