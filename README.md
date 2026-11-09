@@ -96,4 +96,10 @@ Faces fora de qualquer ambiente formam a base do projeto: o piso continua visív
 
 ## Deploy
 
-O build (`npm run build`) gera um site estático em `dist/`, que pode ser publicado na Vercel, na Netlify ou em qualquer hospedagem estática. Como o site usa rotas no navegador, configure a hospedagem para responder com o `index.html` quando o caminho não existir (_SPA fallback_). Para publicar em um subdiretório (por exemplo, no GitHub Pages), defina `base` no `vite.config.ts`.
+O site é publicado no GitHub Pages automaticamente a cada push na `main`, pelo workflow `.github/workflows/deploy.yml`.
+
+Configuração (uma única vez): em **Settings → Pages → Build and deployment**, escolha **Source: GitHub Actions**.
+
+Endereço: `https://<usuario>.github.io/<repositorio>/`. O workflow ajusta o caminho base pelo nome do repositório e copia o `index.html` para `404.html`, para que links diretos (como `/projetos/brinquedoteca`) funcionem.
+
+Para outras hospedagens estáticas (Vercel, Netlify), use `npm run build` e publique a pasta `dist/` com _SPA fallback_ para o `index.html`.
