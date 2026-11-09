@@ -5,8 +5,8 @@ import type { Localized } from '../types';
  * Replace the placeholder values with your own.
  */
 export const site = {
-  name: 'Dugonski Arquitetura',
-  shortName: 'Dugonski',
+  name: 'Maria Eduarda das Neves',
+  shortName: 'Maria Eduarda das Neves',
   email: 'contato@exemplo.com',
   phone: '+55 00 00000-0000',
   city: { pt: 'Brasil', en: 'Brazil' } satisfies Localized,
