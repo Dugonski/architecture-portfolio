@@ -7,7 +7,7 @@ const pt = {
   'lang.switch': 'English',
   'lang.switchLabel': 'Mudar idioma para inglês',
 
-  'home.eyebrow': 'Arquitetura & Interiores',
+  'home.eyebrow': 'Modelagem 3D · Arquitetura & Interiores',
   'home.title': 'Espaços pensados para serem vividos',
   'home.lead': 'Explore cada projeto em 3D: navegue pelo modelo, selecione ambientes e veja os detalhes de perto.',
   'home.cta': 'Ver projetos',
@@ -61,6 +61,11 @@ const pt = {
   'viewer.controls': 'Controles',
 
   'about.title': 'Sobre',
+  'about.skills': 'Competências',
+  'about.tools': 'Ferramentas',
+  'about.languages': 'Idiomas',
+  'about.experience': 'Experiência',
+  'about.education': 'Formação',
   'contact.title': 'Contato',
   'contact.lead': 'Vamos conversar sobre o seu projeto.',
   'contact.name': 'Nome',
@@ -83,7 +88,7 @@ const en: Record<TranslationKey, string> = {
   'lang.switch': 'Português',
   'lang.switchLabel': 'Switch language to Portuguese',
 
-  'home.eyebrow': 'Architecture & Interiors',
+  'home.eyebrow': '3D Modeling · Architecture & Interiors',
   'home.title': 'Spaces designed to be lived in',
   'home.lead':
     'Explore every project in 3D: move around the model, select rooms and take a closer look at the details.',
@@ -138,6 +143,11 @@ const en: Record<TranslationKey, string> = {
   'viewer.controls': 'Controls',
 
   'about.title': 'About',
+  'about.skills': 'Skills',
+  'about.tools': 'Tools',
+  'about.languages': 'Languages',
+  'about.experience': 'Experience',
+  'about.education': 'Education',
   'contact.title': 'Contact',
   'contact.lead': "Let's talk about your project.",
   'contact.name': 'Name',

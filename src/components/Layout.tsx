@@ -18,7 +18,8 @@ export function Layout() {
       <header className="site-header">
         <div className="container site-header__inner">
           <Link to="/" className="site-header__brand">
-            {site.shortName}
+            <span className="brand-full">{site.name}</span>
+            <span className="brand-short">{site.shortName}</span>
           </Link>
           <nav className="site-nav" aria-label="Principal">
             <NavLink to="/" end>
