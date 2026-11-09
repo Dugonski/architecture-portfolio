@@ -106,7 +106,9 @@ export function ZonedModel(props: ZonedModelProps) {
     return map;
   }, [model]);
 
-  useEffect(() => onReady(model), [model, onReady]);
+  useEffect(() => {
+    onReady(model);
+  }, [model, onReady]);
 
   useEffect(
     () => () => {
