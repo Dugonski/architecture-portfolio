@@ -12,7 +12,10 @@ export const site = {
   city: { pt: 'Brasil', en: 'Brazil' } satisfies Localized,
   social: [
     { label: 'Instagram', href: 'https://instagram.com/' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/' },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/maria-eduarda-das-neves-arquitetura-e-interiores',
+    },
   ],
   bio: [
     {
