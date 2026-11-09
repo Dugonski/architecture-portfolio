@@ -4,7 +4,7 @@
   min-height: 460px;
   overflow: hidden;
   border-radius: var(--radius);
-  background: #ece8e1;
+  background: #efede6;
   isolation: isolate;
 }
 
@@ -32,7 +32,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   background: rgb(29 28 26 / 0.72);
-  color: #f4f1ec;
+  color: var(--paper);
   font-size: 0.75rem;
   white-space: nowrap;
   pointer-events: none;
@@ -50,7 +50,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  background: #ece8e1;
+  background: #efede6;
   z-index: 3;
 }
 
@@ -156,7 +156,7 @@
 
 .zone-list__item:hover,
 .zone-list__item[data-hovered] {
-  background: rgb(194 103 47 / 0.12);
+  background: rgb(95 115 88 / 0.14);
 }
 
 .zone-list__item[aria-pressed='true'] {
@@ -239,7 +239,11 @@
 
 .viewer-info__title {
   margin: 0;
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1.1;
 }
 
 .viewer-info__text {

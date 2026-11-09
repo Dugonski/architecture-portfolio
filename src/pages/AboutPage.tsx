@@ -1,3 +1,4 @@
+import { RuleHeading } from '../components/RuleHeading';
 import { site, type TimelineEntry } from '../data/site';
 import { useI18n } from '../i18n/context';
 
@@ -34,8 +35,8 @@ export default function AboutPage() {
 
   return (
     <section className="page container">
-      <p className="eyebrow">{l(site.role)}</p>
-      <h1 className="page__title">{site.name}</h1>
+      <RuleHeading as="p">{t('about.title')}</RuleHeading>
+      <h1 className="page__title display">{site.name}</h1>
 
       <div className="about">
         <div>
@@ -66,12 +67,12 @@ export default function AboutPage() {
       </div>
 
       <section className="project-section">
-        <h2>{t('about.experience')}</h2>
+        <RuleHeading>{t('about.experience')}</RuleHeading>
         <Timeline entries={site.experience} />
       </section>
 
       <section className="project-section">
-        <h2>{t('about.education')}</h2>
+        <RuleHeading>{t('about.education')}</RuleHeading>
         <Timeline entries={site.education} />
       </section>
     </section>

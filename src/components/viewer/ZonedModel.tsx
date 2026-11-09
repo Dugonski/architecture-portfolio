@@ -24,7 +24,7 @@ type PartState = 'normal' | 'hover' | 'ghost' | 'ghostHover' | 'hidden';
 /** Helper meshes that must never intercept pointer events. */
 const noRaycast = () => null;
 
-const HOVER_TINT = new Color('#c2672f');
+const HOVER_TINT = new Color('#6f8a63');
 
 const ghostMaterial = new MeshBasicMaterial({
   color: '#8f969c',
@@ -34,7 +34,7 @@ const ghostMaterial = new MeshBasicMaterial({
 });
 
 const ghostHoverMaterial = new MeshBasicMaterial({
-  color: '#c2672f',
+  color: '#5f7358',
   transparent: true,
   opacity: 0.22,
   depthWrite: false,
@@ -44,7 +44,7 @@ const ghostHoverMaterial = new MeshBasicMaterial({
  * Back faces exposed by a section cut are drawn dark, which reads as the
  * solid fill (poché) of an architectural section.
  */
-const pocheMaterial = new MeshBasicMaterial({ color: '#2b2a28', side: BackSide });
+const pocheMaterial = new MeshBasicMaterial({ color: '#2a332c', side: BackSide });
 
 /** Mostly-opaque surfaces are made solid so they sort and read correctly. */
 function normalizeMaterial(material: Material) {
@@ -169,7 +169,7 @@ export function ZonedModel(props: ZonedModelProps) {
                   : undefined
               }
             >
-              {zoneId !== null && zoneId === props.selected && <Edges threshold={25} color="#b5532a" />}
+              {zoneId !== null && zoneId === props.selected && <Edges threshold={25} color="#2a332c" />}
             </mesh>
           </group>
         );

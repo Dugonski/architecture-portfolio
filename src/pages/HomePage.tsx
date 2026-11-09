@@ -1,52 +1,80 @@
-import { useMemo, useState } from 'react';
-import { ProjectCard } from '../components/ProjectCard';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { RuleHeading } from '../components/RuleHeading';
 import { projects } from '../data/projects';
+import { site } from '../data/site';
 import { useI18n } from '../i18n/context';
-import type { ProjectCategory } from '../types';
 
 export default function HomePage() {
-  const { t } = useI18n();
-  const [filter, setFilter] = useState<ProjectCategory | 'all'>('all');
-
-  const categories = useMemo(() => [...new Set(projects.map((project) => project.category))], []);
-  const visible = filter === 'all' ? projects : projects.filter((project) => project.category === filter);
+  const { t, l } = useI18n();
+  const [active, setActive] = useState(0);
 
   return (
     <>
-      <section className="hero container">
-        <p className="eyebrow">{t('home.eyebrow')}</p>
-        <h1 className="hero__title">{t('home.title')}</h1>
-        <p className="hero__lead">{t('home.lead')}</p>
-        <a href="#projetos" className="button">
-          {t('home.cta')}
-        </a>
+      {/* Cover, mirroring the first page of the PDF */}
+      <section className="cover container">
+        <div className="cover__top">
+          <RuleHeading as="p">{t('home.portfolio')}</RuleHeading>
+          <p className="cover__subtitle">{t('home.subtitle')}</p>
+        </div>
+
+        <div className="cover__center">
+          <h1 className="cover__name display">{site.brand}</h1>
+          <p className="cover__role">{l(site.role)}</p>
+          <p className="cover__intro">{t('home.intro')}</p>
+        </div>
+
+        <div className="cover__contact">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <span className="cover__contact-separator" aria-hidden="true">
+            -
+          </span>
+          <a href={`tel:+55${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>
+          <span className="cover__contact-rule" aria-hidden="true" />
+          <span>{l(site.city)}</span>
+        </div>
       </section>
 
-      <section id="projetos" className="container">
-        <div className="section-heading">
-          <h2>{t('home.projects')}</h2>
-          {categories.length > 1 && (
-            <div className="filters" role="group">
-              <button type="button" aria-pressed={filter === 'all'} onClick={() => setFilter('all')}>
-                {t('home.filter.all')}
-              </button>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  aria-pressed={filter === category}
-                  onClick={() => setFilter(category)}
+      {/* Contents (sumário) */}
+      <section id="sumario" className="contents container">
+        <RuleHeading>{t('home.summary')}</RuleHeading>
+        <div className="summary">
+          <ol className="summary__list">
+            {projects.map((project, index) => (
+              <li key={project.slug} className="summary__item">
+                <Link
+                  to={`/projetos/${project.slug}`}
+                  className="summary__link"
+                  data-active={active === index ? '' : undefined}
+                  onMouseEnter={() => setActive(index)}
+                  onFocus={() => setActive(index)}
                 >
-                  {t(`category.${category}`)}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="project-grid">
-          {visible.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
+                  <span>
+                    <span className="summary__name">{l(project.title)}</span>
+                    <span className="summary__tag">
+                      {t(`category.${project.category}`)}
+                      {project.model ? ` · ${t('home.has3d')}` : ''}
+                    </span>
+                  </span>
+                  <span className="summary__leader" aria-hidden="true" />
+                  <span className="summary__number">{String(index + 1).padStart(2, '0')}</span>
+                </Link>
+                <img className="summary__thumb" src={project.cover} alt="" loading="lazy" />
+              </li>
+            ))}
+          </ol>
+
+          <div className="summary__preview" aria-hidden="true">
+            {projects.map((project, index) => (
+              <img
+                key={project.slug}
+                src={project.cover}
+                alt=""
+                data-active={active === index ? '' : undefined}
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </>

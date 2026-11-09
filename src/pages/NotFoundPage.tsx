@@ -6,8 +6,8 @@ export default function NotFoundPage() {
 
   return (
     <section className="not-found container">
-      <h1>{t('notFound.title')}</h1>
-      <Link to="/" className="button button--ghost">
+      <h1 className="display">{t('notFound.title')}</h1>
+      <Link to="/#sumario" className="button button--ghost">
         {t('notFound.back')}
       </Link>
     </section>

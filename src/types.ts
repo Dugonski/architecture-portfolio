@@ -5,7 +5,7 @@ export type Localized = Record<Language, string>;
 
 export type Vec3 = [number, number, number];
 
-export type ProjectCategory = 'residential' | 'commercial' | 'institutional' | 'interiors';
+export type ProjectCategory = 'residential' | 'commercial' | 'institutional';
 
 /**
  * A selectable part of a model (room, area, piece of furniture...).
@@ -31,24 +31,54 @@ export interface ProjectModel {
   zones: ModelZone[];
 }
 
-export interface GalleryImage {
+export interface ProjectImage {
   src: string;
-  kind: 'photo' | 'render' | 'plan';
   caption: Localized;
+  /** Spans the full row in multi-column layouts (very wide drawings). */
+  wide?: boolean;
+}
+
+/** A joinery detail sheet (prancha de marcenaria). */
+export interface DetailSheet {
+  code: string;
+  title: Localized;
+  room: Localized;
+  src: string;
+}
+
+export interface Material {
+  swatch: string;
+  name: Localized;
+  application: Localized;
+}
+
+/** A tool used in the project and what it was used for. */
+export interface ProjectTool {
+  name: string;
+  use: Localized;
 }
 
 export interface Project {
   slug: string;
   title: Localized;
   category: ProjectCategory;
-  year: number;
-  location: Localized;
-  /** Built area in square meters. */
-  area: number;
-  status: Localized;
   summary: Localized;
-  description: Localized[];
+  description: Localized;
+  /** Floor area in square meters, when known. */
+  area?: number;
+  year?: number;
+  tools: ProjectTool[];
   cover: string;
-  gallery: GalleryImage[];
+  renders: ProjectImage[];
+  /** Floor plans and elevations; the first one is the main floor plan. */
+  plans: ProjectImage[];
+  /**
+   * `side`: portrait floor plan with the other drawings stacked beside it.
+   * `stacked`: landscape floor plan with the other drawings in a grid below.
+   */
+  planLayout?: 'side' | 'stacked';
+  isometric: ProjectImage[];
+  details: DetailSheet[];
+  materials: Material[];
   model?: ProjectModel;
 }

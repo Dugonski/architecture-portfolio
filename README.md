@@ -9,7 +9,7 @@ Portfólio de arquitetura e interiores com modelos 3D interativos. Cada projeto 
 - **Destacar ou isolar**: os demais ambientes ficam translúcidos ou são ocultados.
 - **Cortes** horizontal, longitudinal e transversal, com preenchimento escuro nas superfícies cortadas.
 - **Vistas rápidas**: enquadrar, planta (vista superior) e perspectiva, além de tela cheia.
-- **Galeria** de fotos/renders e **plantas** com visualização ampliada.
+- **Páginas de projeto** no formato do portfólio em PDF: renders, planta baixa e elevações, vistas isométricas, detalhamento de marcenaria e especificação de materiais, com visualização ampliada.
 - **Páginas** de projetos (com filtro por tipologia), sobre e contato.
 - **Bilíngue** (português e inglês), com preferência salva no navegador.
 - Layout responsivo para desktop e celular.
@@ -68,9 +68,9 @@ src/
 
    Os arquivos originais ficam em `models-src/`, que não é versionado.
 
-2. **Adicione as imagens** em `public/projects/<slug>/`.
+2. **Adicione as imagens** em `public/projects/<slug>/`: `render-01.jpg`…, `planta.jpg`, `elevacao-1.jpg`…, `isometrica.jpg`, `prancha-01.jpg`… (detalhamento) e `material-1.jpg`… (amostras de materiais).
 
-3. **Cadastre o projeto** em `src/data/projects.ts`, com textos em português e inglês.
+3. **Cadastre o projeto** em `src/data/projects.ts`, com textos em português e inglês. A ordem da lista é a ordem do sumário.
 
 ### Definindo os ambientes selecionáveis
 

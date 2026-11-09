@@ -170,7 +170,7 @@ export default function ModelViewer({ model, projectArea }: ModelViewerProps) {
         camera={{ fov: 40, near: 0.05, far: 200, position: [8, 7, 9] }}
         gl={{ antialias: true, preserveDrawingBuffer: true }}
       >
-        <color attach="background" args={['#ece8e1']} />
+        <color attach="background" args={['#efede6']} />
         <hemisphereLight args={['#ffffff', '#b9b1a5', 1.25]} />
         <directionalLight position={[6, 10, 7]} intensity={1.9} />
         <directionalLight position={[-8, 6, -4]} intensity={0.6} />

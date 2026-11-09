@@ -1,4 +1,5 @@
 import type { FormEvent } from 'react';
+import { RuleHeading } from '../components/RuleHeading';
 import { site } from '../data/site';
 import { useI18n } from '../i18n/context';
 
@@ -9,21 +10,25 @@ export default function ContactPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const subject = `${site.name} — ${data.get('name')}`;
+    const subject = `${site.brand} — ${data.get('name')}`;
     const body = `${data.get('message')}\n\n${data.get('name')} <${data.get('email')}>`;
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
     <section className="page container">
-      <p className="eyebrow">{site.name}</p>
-      <h1 className="page__title">{t('contact.title')}</h1>
+      <RuleHeading as="p">{t('contact.title')}</RuleHeading>
+      <h1 className="page__title display">{t('contact.lead')}</h1>
       <div className="contact">
         <div className="contact__details">
-          <p>{t('contact.lead')}</p>
           <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>
+          <a href={`tel:+55${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>
           <span>{l(site.city)}</span>
+          {site.social.map((link) => (
+            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+              {link.label}
+            </a>
+          ))}
         </div>
         <form className="form" onSubmit={handleSubmit}>
           <label>
@@ -43,6 +48,8 @@ export default function ContactPage() {
           </button>
         </form>
       </div>
+
+      <p className="thanks display">{t('contact.thanks')}</p>
     </section>
   );
 }

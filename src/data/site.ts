@@ -11,14 +11,13 @@ export interface TimelineEntry {
 /** Personal information shown in the header, footer and about/contact pages. */
 export const site = {
   name: 'Maria Eduarda das Neves',
-  shortName: 'Maria Eduarda',
-  role: {
-    pt: 'Modelagem 3D · Arquitetura e Interiores',
-    en: '3D Modeling · Architecture and Interiors',
-  } satisfies Localized,
+  /** Signature used in the PDF portfolio. */
+  brand: 'Maria Neves',
+  shortName: 'Maria Neves',
+  role: { pt: 'Design de Interiores', en: 'Interior Design' } satisfies Localized,
   email: 'duda.dduddaneveswork@gmail.com',
-  phone: '+55 43 99863-5268',
-  city: { pt: 'Curitiba, Paraná', en: 'Curitiba, Paraná, Brazil' } satisfies Localized,
+  phone: '(43) 98863-5268',
+  city: { pt: 'Curitiba - PR', en: 'Curitiba, Brazil' } satisfies Localized,
   social: [
     {
       label: 'LinkedIn',
