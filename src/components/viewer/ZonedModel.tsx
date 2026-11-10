@@ -46,11 +46,17 @@ const ghostHoverMaterial = new MeshBasicMaterial({
  */
 const pocheMaterial = new MeshBasicMaterial({ color: '#2a332c', side: BackSide });
 
-/** Mostly-opaque surfaces are made solid so they sort and read correctly. */
+/**
+ * Mostly-opaque surfaces are made solid so they sort and read correctly.
+ * GLTFLoader turns off depth writes for blended materials, so they must be
+ * turned back on: otherwise objects behind (e.g. a bed behind a curtain) are
+ * drawn over the now-solid surface.
+ */
 function normalizeMaterial(material: Material) {
   if (material.transparent && material.opacity >= 0.75) {
     material.transparent = false;
     material.opacity = 1;
+    material.depthWrite = true;
     material.needsUpdate = true;
   }
 }
