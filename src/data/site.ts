@@ -96,12 +96,6 @@ export const site = {
         },
       ],
     },
-    {
-      title: { pt: 'Aprendiz e Assistente de Produção', en: 'Apprentice and Production Assistant' },
-      place: 'Pro Tork',
-      period: { pt: 'set. 2022 — out. 2023', en: 'Sep 2022 — Oct 2023' },
-      location: 'Siqueira Campos, PR',
-    },
   ] satisfies TimelineEntry[],
   education: [
     {
