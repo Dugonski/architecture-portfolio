@@ -121,6 +121,15 @@ node --max-old-space-size=12288 scripts/optimize-model.mjs models-src/livraria.g
 
 Os recortes da Brinquedoteca e da Livraria ficam logo abaixo do forro, para que o modelo abra visto de cima. Valores de `--crop` que começam com `-` precisam da forma `--crop=...`.
 
+O recorte do forro deixa as paredes ocas por cima. Para fechá-las com o preenchimento escuro de corte (como nas vistas isométricas do portfólio), rode em seguida:
+
+```bash
+node scripts/cap-walls.mjs public/models/brinquedoteca.glb public/models/brinquedoteca.glb
+node scripts/cap-walls.mjs public/models/livraria.glb public/models/livraria.glb
+```
+
+O script corta o modelo 3 cm abaixo do topo (`--depth`), fecha os contornos das paredes e móveis cortados e ignora superfícies abertas, como painéis ripados e vidros.
+
 Os arquivos originais ficam em `models-src/`, que não é versionado.
 
 ### Ambientes selecionáveis
