@@ -1,6 +1,6 @@
 import { ContactShadows } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { OrthographicCamera, Plane, Raycaster, Vector2, Vector3, type Group } from 'three';
 import { furniture } from './furniture';
 
@@ -218,7 +218,9 @@ export default function HeroFurniture({ eventSource, content }: HeroFurniturePro
   const [gutters, setGutters] = useState({ left: 0, right: 0 });
   const instant = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, []);
 
-  useLayoutEffect(() => {
+  // Runs after the whole page has mounted: when the home page is revisited this
+  // component mounts together with the hero, before its refs are attached.
+  useEffect(() => {
     const measure = () => {
       const hero = eventSource.current?.getBoundingClientRect();
       const text = content.current?.getBoundingClientRect();
@@ -228,6 +230,7 @@ export default function HeroFurniture({ eventSource, content }: HeroFurniturePro
     measure();
     const observer = new ResizeObserver(measure);
     if (eventSource.current) observer.observe(eventSource.current);
+    if (content.current) observer.observe(content.current);
     return () => observer.disconnect();
   }, [eventSource, content]);
 
