@@ -6,12 +6,12 @@ Site de portfólio de Maria Eduarda das Neves, pensado como uma extensão imersi
 
 ## Projetos
 
-| #   | Projeto         | Tipologia     | Conteúdo                                                |
-| --- | --------------- | ------------- | ------------------------------------------------------- |
-| 01  | Studio compacto | Residencial   | Renders, plantas, isométricas, 8 pranchas, materiais    |
-| 02  | Brinquedoteca   | Institucional | **Modelo 3D**, renders, plantas, isométricas, materiais |
-| 03  | Cozinha Marinho | Residencial   | Renders, plantas, isométricas, 5 pranchas, materiais    |
-| 04  | Livraria        | Comercial     | Renders, plantas, isométricas, materiais                |
+| #   | Projeto         | Tipologia     | Conteúdo                                                            |
+| --- | --------------- | ------------- | ------------------------------------------------------------------- |
+| 01  | Studio compacto | Residencial   | **Modelo 3D**, renders, plantas, isométricas, 8 pranchas, materiais |
+| 02  | Brinquedoteca   | Institucional | **Modelo 3D**, renders, plantas, isométricas, materiais             |
+| 03  | Cozinha Marinho | Residencial   | **Modelo 3D**, renders, plantas, isométricas, 5 pranchas, materiais |
+| 04  | Livraria        | Comercial     | **Modelo 3D**, renders, plantas, isométricas, materiais             |
 
 ## Funcionalidades
 
@@ -97,7 +97,7 @@ Exporte em `.glb` direto do programa de modelagem para manter as texturas: no Sk
 
 ### Otimização
 
-Exportadores costumam gerar milhares de objetos separados, o que deixa o modelo pesado no navegador. O script junta a geometria por material, remove objetos soltos, converte as unidades para metros e centraliza o modelo:
+Exportadores costumam gerar milhares de objetos separados (e o SketchUp repete cada componente várias vezes), o que deixa o modelo pesado no navegador. O script aplica as transformações, junta a geometria por material, remove objetos soltos, simplifica as malhas muito densas (plantas, tecidos, enfeites), reduz as texturas para WebP de até 1024 px, comprime a geometria com meshopt e centraliza o modelo:
 
 ```bash
 node scripts/optimize-model.mjs models-src/projeto.glb public/models/projeto.glb --scale 0.0254 --center
@@ -106,6 +106,20 @@ node scripts/optimize-model.mjs models-src/projeto.glb public/models/projeto.glb
 - `--scale`: fator de conversão para metros (`0.0254` para polegadas, padrão do SketchUp; `0.01` para centímetros; `1` se já estiver em metros).
 - `--crop x0,y0,z0,x1,y1,z1`: descarta a geometria fora desta caixa (nas unidades originais).
 - `--center`: centraliza o modelo e coloca o piso em `y = 0`.
+- `--drop <regex>`: remove as faces com material correspondente (por exemplo, as figuras humanas de escala do SketchUp).
+- `--drop-markers <a>:<b>`: remove marcações exportadas por engano (objetos com o material `<a>` e os objetos com o material `<b>` encostados neles).
+- `--simplify`, `--dense`, `--dense-error`, `--texture-size`: ajustes da simplificação e das texturas (veja o cabeçalho do script).
+
+Comandos usados nos modelos atuais (todos já exportados em metros):
+
+```bash
+node --max-old-space-size=12288 scripts/optimize-model.mjs models-src/residencial.glb public/models/studio-compacto.glb --center "--drop-markers=^\[Color A04\]:^\[Color E02\]"
+node --max-old-space-size=12288 scripts/optimize-model.mjs models-src/brinquedoteca.glb public/models/brinquedoteca.glb --center --crop=5,-0.2,-11.5,15.8,2.98,-5.8
+node --max-old-space-size=12288 scripts/optimize-model.mjs models-src/cozinha.glb public/models/cozinha-marinho.glb --center --crop=-1,-0.2,-10.8,9.6,3.5,1.0 "--drop=^(Ty_|Lisanne_)"
+node --max-old-space-size=12288 scripts/optimize-model.mjs models-src/livraria.glb public/models/livraria.glb --center --crop=5,-0.5,8.5,12,5.64,18.5
+```
+
+Os recortes da Brinquedoteca e da Livraria ficam logo abaixo do forro, para que o modelo abra visto de cima. Valores de `--crop` que começam com `-` precisam da forma `--crop=...`.
 
 Os arquivos originais ficam em `models-src/`, que não é versionado.
 
@@ -114,7 +128,7 @@ Os arquivos originais ficam em `models-src/`, que não é versionado.
 No projeto, informe `model: { url, zones }`. Cada ambiente pode ser definido de duas formas, e a primeira regra que corresponder vence:
 
 - **Por nome** (`nodes`): se o modelo foi exportado com objetos nomeados (por exemplo, grupos `Sala` e `Cozinha`), basta listar os nomes. É a forma mais precisa.
-- **Por região** (`boxes`): caixas em metros, nas coordenadas do modelo otimizado. Toda face contida inteiramente em uma caixa pertence ao ambiente. É assim que o modelo da Brinquedoteca, exportado sem nomes, foi dividido.
+- **Por região** (`boxes`): caixas em metros, nas coordenadas do modelo otimizado. Toda face contida inteiramente em uma caixa pertence ao ambiente. É assim que os quatro modelos atuais, exportados sem nomes, foram divididos.
 
 ```ts
 zones: [

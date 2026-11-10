@@ -45,10 +45,11 @@ Before committing: `npx prettier --check .`, `npm run lint` and `npm run build`.
 - **Effects must not return values:** `useEffect(() => window.scrollTo(0, 0))` crashed navigation, because `scrollTo` returns a Promise in recent Chrome. Always use a function body.
 - **Measuring the layout:** components that read refs from parent or sibling elements must do it in `useEffect`, not `useLayoutEffect`. When a lazy component is already cached, it mounts before those refs are attached.
 - **GitHub Pages:** the site lives under `/architecture-portfolio/`. Use `import.meta.env.BASE_URL` for public files. The workflow copies `index.html` to `404.html` so direct links work.
+- **Optimizing models:** SketchUp exports are heavily instanced and often carry hidden-layer junk (scale figures, annotation markers) and ceilings that hide the interior; check the result visually from above before wiring zones. Compressed models use quantized attributes and `EXT_meshopt_compression`, so viewer code must not write world coordinates back into the loaded attributes.
 - **Testing:** to check visually, use Playwright (Chromium) with the build served by route interception. Google Fonts can be blocked in the cloud environment, so abort those requests and use `waitUntil: 'domcontentloaded'`.
 
 ## Pending (confirm with the user)
 
 - **Phone:** the PDF says (43) 98863-5268 (the one currently on the site), LinkedIn says (43) 9 9863-5268.
 - **Project years:** missing for Brinquedoteca and Livraria.
-- **3D models:** only the Brinquedoteca has one, and it came without textures or object names (converted via ImageToStl). Ideally, new models are exported straight from SketchUp as `.glb`, with textures and named rooms.
+- **3D models:** all four projects have one (SketchUp `.glb` exports, already in meters, with textures but meaningless node names, so zones use `boxes`). The exact optimize commands are in the README. Exports with named rooms would allow `nodes` zones.

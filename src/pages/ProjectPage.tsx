@@ -93,7 +93,7 @@ function ProjectContent({ project, index }: { project: Project; index: number })
           <RuleHeading id="modelo">{t('project.model')}</RuleHeading>
           <p className="section-lead">{t('project.modelLead')}</p>
           <Suspense fallback={<div className="viewer" />}>
-            <ModelViewer model={project.model} projectArea={project.area ?? 0} />
+            <ModelViewer model={project.model} projectArea={project.area} projectTitle={l(project.title)} />
           </Suspense>
         </section>
       )}

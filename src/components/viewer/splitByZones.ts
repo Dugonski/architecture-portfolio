@@ -1,4 +1,4 @@
-import { Box3, BufferGeometry, Mesh, Vector3, type Material, type Object3D } from 'three';
+import { Box3, BufferAttribute, BufferGeometry, Mesh, Vector3, type Material, type Object3D } from 'three';
 import type { ModelZone } from '../../types';
 
 /** Unassigned geometry is split into the floor and everything else. */
@@ -58,6 +58,19 @@ export function splitByZones(scene: Object3D, zones: ModelZone[]): SplitModel {
   scene.traverse((object) => {
     if (!(object instanceof Mesh)) return;
     const source = (object.geometry as BufferGeometry).clone();
+    // Compressed models store quantized (normalized integer) positions and
+    // normals; baking world coordinates into them would clamp to [-1, 1].
+    for (const name of ['position', 'normal']) {
+      const attribute = source.getAttribute(name);
+      if (attribute && !(attribute.array instanceof Float32Array)) {
+        const values = new Float32Array(attribute.count * attribute.itemSize);
+        for (let i = 0; i < attribute.count; i++) {
+          for (let k = 0; k < attribute.itemSize; k++)
+            values[i * attribute.itemSize + k] = attribute.getComponent(i, k);
+        }
+        source.setAttribute(name, new BufferAttribute(values, attribute.itemSize));
+      }
+    }
     source.applyMatrix4(object.matrixWorld);
     if (!source.attributes.normal) source.computeVertexNormals();
 

@@ -13,7 +13,9 @@ import './viewer.css';
 interface ModelViewerProps {
   model: ProjectModel;
   /** Area of the whole project in m², shown when nothing is selected. */
-  projectArea: number;
+  projectArea?: number;
+  /** Shown instead of the area for projects without one. */
+  projectTitle: string;
 }
 
 const PERSPECTIVE = { azimuth: 0.55, polar: 0.95 };
@@ -81,7 +83,7 @@ function LoadingOverlay() {
   );
 }
 
-export default function ModelViewer({ model, projectArea }: ModelViewerProps) {
+export default function ModelViewer({ model, projectArea, projectTitle }: ModelViewerProps) {
   const { t } = useI18n();
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<CameraControls>(null);
@@ -207,6 +209,7 @@ export default function ModelViewer({ model, projectArea }: ModelViewerProps) {
         zoneBounds={split?.zoneBounds}
         bounds={split?.bounds}
         projectArea={projectArea}
+        projectTitle={projectTitle}
         selected={selected}
         hovered={hovered}
         mode={mode}

@@ -107,6 +107,62 @@ export const projects: Project[] = [
         'Kitchen cabinets and TV unit',
       ],
     ]),
+    model: {
+      url: `${base}models/studio-compacto.glb`,
+      zones: [
+        {
+          id: 'cozinha',
+          name: { pt: 'Cozinha', en: 'Kitchen' },
+          description: {
+            pt: 'Cozinha linear com armários em verde Ervas Finas, cooktop, pia e bancada de refeições com duas banquetas.',
+            en: 'A linear kitchen with Verde Ervas Finas cabinets, a cooktop, a sink and a breakfast counter with two stools.',
+          },
+          boxes: [
+            { min: [-3.8, -0.1, -2.75], max: [0.05, 2.8, -1.4] },
+            { min: [-3.8, -0.1, -1.4], max: [-1.2, 2.8, -0.95] },
+          ],
+        },
+        {
+          id: 'sala',
+          name: { pt: 'Sala de estar', en: 'Living area' },
+          description: {
+            pt: 'Sofá, tapete redondo e rack planejado, integrados à cozinha.',
+            en: 'A sofa, a round rug and a custom TV unit, open to the kitchen.',
+          },
+          boxes: [
+            { min: [0.05, -0.1, -2.75], max: [1.65, 2.8, -1.4] },
+            { min: [-0.45, -0.1, -1.4], max: [1.65, 2.8, -0.2] },
+          ],
+        },
+        {
+          id: 'banheiro',
+          name: { pt: 'Banheiro', en: 'Bathroom' },
+          description: {
+            pt: 'Banheiro completo revestido em mármore branco.',
+            en: 'A full bathroom finished in white marble.',
+          },
+          boxes: [{ min: [-3.8, -0.1, -0.05], max: [-2.25, 2.8, 2.75] }],
+        },
+        {
+          id: 'dormitorio',
+          name: { pt: 'Dormitório e área de trabalho', en: 'Bedroom and workspace' },
+          description: {
+            pt: 'Cama, guarda-roupa, nicho e mesa de estudos sob medida para a rotina de uma estudante.',
+            en: 'A bed, a wardrobe, shelving and a made-to-measure study desk built around a student’s routine.',
+          },
+          boxes: [{ min: [-2.25, -0.1, 0.1], max: [1.65, 2.8, 2.75] }],
+        },
+        {
+          id: 'servico',
+          name: { pt: 'Área de serviço e varanda', en: 'Laundry and balcony' },
+          description: {
+            pt: 'Área externa com bancada de serviço, tanque e jardineira.',
+            en: 'An outdoor area with a laundry counter, a utility sink and a planter.',
+          },
+          boxes: [{ min: [1.65, -0.1, -2.9], max: [3.95, 2.8, 2.9] }],
+        },
+      ],
+    },
   },
   {
     slug: 'brinquedoteca',
@@ -179,7 +235,7 @@ export const projects: Project[] = [
             pt: 'Casinha em marcenaria com mezanino, janelas redondas, escada, escorregador e estantes de livros no andar de baixo.',
             en: 'Joinery playhouse with a mezzanine, round windows, a ladder, a slide and bookshelves on the lower level.',
           },
-          boxes: [{ min: [-5.02, -0.1, -2.38], max: [-2.73, 3.2, -0.6] }],
+          boxes: [{ min: [-5.1, -0.1, -2.6], max: [-2.73, 3.2, -0.6] }],
         },
         {
           id: 'montanhas',
@@ -188,7 +244,7 @@ export const projects: Project[] = [
             pt: 'Triângulos em tons pastel com iluminação indireta, formando uma cordilheira com prateleiras de livros.',
             en: 'Pastel triangles with indirect lighting form a mountain range with book ledges.',
           },
-          boxes: [{ min: [-2.73, -0.1, -2.38], max: [4.92, 3.2, -2.02] }],
+          boxes: [{ min: [-2.73, -0.1, -2.6], max: [5.0, 3.2, -2.02] }],
         },
         {
           id: 'leitura',
@@ -197,7 +253,7 @@ export const projects: Project[] = [
             pt: 'Tablado orgânico com tapete, almofadas e blocos, para brincadeiras no chão e momentos de descanso.',
             en: 'An organic platform with a rug, cushions and blocks for floor play and quiet time.',
           },
-          boxes: [{ min: [0.32, -0.1, -2.02], max: [4.92, 3.2, 0.09] }],
+          boxes: [{ min: [0.32, -0.1, -2.02], max: [5.0, 3.2, 0.09] }],
         },
         {
           id: 'lousa',
@@ -206,7 +262,7 @@ export const projects: Project[] = [
             pt: 'Lousa em arco com tinta de quadro negro, emoldurada por nichos e almofadas coloridas.',
             en: 'An arched blackboard-paint wall framed by cubbies and colorful floor cushions.',
           },
-          boxes: [{ min: [-5.02, -0.1, 1.23], max: [-0.39, 3.2, 2.56] }],
+          boxes: [{ min: [-5.1, -0.1, 1.23], max: [-0.39, 3.2, 2.65] }],
         },
         {
           id: 'nichos',
@@ -215,7 +271,7 @@ export const projects: Project[] = [
             pt: 'Painel com TV, nicho circular de leitura e gavetas coloridas para guardar os brinquedos.',
             en: 'A TV wall with a round reading nook and colorful drawers for toy storage.',
           },
-          boxes: [{ min: [-0.39, -0.1, 1.23], max: [2.6, 3.2, 2.56] }],
+          boxes: [{ min: [-0.39, -0.1, 1.23], max: [2.6, 3.2, 2.65] }],
         },
         {
           id: 'canto',
@@ -224,7 +280,7 @@ export const projects: Project[] = [
             pt: 'Tapete rosa com tenda iluminada, junto às janelas e à iluminação natural.',
             en: 'A pink rug with a lit teepee, next to the windows and natural light.',
           },
-          boxes: [{ min: [1.84, -0.1, 0.09], max: [4.92, 3.2, 2.56] }],
+          boxes: [{ min: [1.84, -0.1, 0.09], max: [5.0, 3.2, 2.65] }],
         },
       ],
     },
@@ -281,6 +337,47 @@ export const projects: Project[] = [
       ['Quartzo branco', 'White quartz', 'Bancada da pia', 'Sink countertop'],
       ['MDF Duratex, Carvalho Malva', 'Duratex MDF, Carvalho Malva', 'Nichos', 'Cubbies'],
     ]),
+    model: {
+      url: `${base}models/cozinha-marinho.glb`,
+      zones: [
+        {
+          id: 'cozinha',
+          name: { pt: 'Cozinha e ilha', en: 'Kitchen and island' },
+          description: {
+            pt: 'Cozinha em L com armários azul-marinho, bancada em quartzo branco e ilha para refeições rápidas.',
+            en: 'An L-shaped kitchen with navy cabinets, a white quartz countertop and an island for quick meals.',
+          },
+          boxes: [{ min: [-4.75, -0.1, -3.72], max: [-1.6, 3.4, -0.15] }],
+        },
+        {
+          id: 'jantar',
+          name: { pt: 'Sala de jantar', en: 'Dining area' },
+          description: {
+            pt: 'Mesa de jantar para seis lugares, entre a cozinha e a sala de estar.',
+            en: 'A six-seat dining table between the kitchen and the living area.',
+          },
+          boxes: [{ min: [-1.3, -0.1, -3.15], max: [0.6, 3.4, -0.5] }],
+        },
+        {
+          id: 'estar',
+          name: { pt: 'Sala de estar', en: 'Living area' },
+          description: {
+            pt: 'Sofá em L, tapete geométrico e painel da TV com prateleiras em madeira.',
+            en: 'An L-shaped sofa, a geometric rug and a TV wall with wooden shelves.',
+          },
+          boxes: [{ min: [1.7, -0.1, -2.95], max: [4.73, 3.4, 0.2] }],
+        },
+        {
+          id: 'escada',
+          name: { pt: 'Escada e canto de leitura', en: 'Staircase and reading corner' },
+          description: {
+            pt: 'Escada com guarda-corpo em vidro e poltrona sobre tapete redondo.',
+            en: 'A staircase with a glass balustrade and an armchair on a round rug.',
+          },
+          boxes: [{ min: [0.8, -0.1, 1.5], max: [4.73, 3.4, 5.44] }],
+        },
+      ],
+    },
   },
   {
     slug: 'livraria',
@@ -321,6 +418,68 @@ export const projects: Project[] = [
       ['Mogno com acabamento em verniz', 'Varnished mahogany', 'Estantes', 'Bookcases'],
       ['Linho branco', 'White linen', 'Estofados do sofá e das poltronas', 'Sofa and armchair upholstery'],
     ]),
+    model: {
+      url: `${base}models/livraria.glb`,
+      zones: [
+        {
+          id: 'mogno',
+          name: { pt: 'Estantes em mogno', en: 'Mahogany bookcases' },
+          description: {
+            pt: 'Estantes em mogno envernizado na entrada, ao longo das paredes laterais.',
+            en: 'Varnished mahogany bookcases along the side walls by the entrance.',
+          },
+          boxes: [
+            { min: [-2.2, -0.1, 0.5], max: [-1.5, 3.15, 4.6] },
+            { min: [1.55, -0.1, 2.45], max: [2.2, 3.15, 4.6] },
+          ],
+        },
+        {
+          id: 'mesa',
+          name: { pt: 'Mesa expositora', en: 'Display table' },
+          description: {
+            pt: 'Mesa central em madeira para exposição de lançamentos e destaques.',
+            en: 'A central wooden table showcasing new releases and highlights.',
+          },
+          boxes: [{ min: [-0.7, -0.1, -0.1], max: [0.25, 1.8, 3.2] }],
+        },
+        {
+          id: 'leitura',
+          name: { pt: 'Área de leitura', en: 'Reading area' },
+          description: {
+            pt: 'Poltronas em linho branco sobre tapete redondo, junto às estantes.',
+            en: 'White linen armchairs on a round rug, next to the bookcases.',
+          },
+          boxes: [{ min: [0.4, -0.1, -0.7], max: [2.2, 2.4, 2.45] }],
+        },
+        {
+          id: 'verde',
+          name: { pt: 'Estantes em verde musgo', en: 'Moss green bookcases' },
+          description: {
+            pt: 'Área sob o mezanino com estantes em MDF verde musgo e tapete.',
+            en: 'The area below the mezzanine, with moss green MDF bookcases and a rug.',
+          },
+          boxes: [{ min: [-1.2, -0.1, -3.0], max: [2.2, 2.6, -0.8] }],
+        },
+        {
+          id: 'atendimento',
+          name: { pt: 'Atendimento', en: 'Service desk' },
+          description: {
+            pt: 'Balcão de atendimento com estante de livros ao fundo.',
+            en: 'The service desk, with a bookcase behind it.',
+          },
+          boxes: [{ min: [0.25, -0.1, -4.6], max: [2.2, 3.15, -2.95] }],
+        },
+        {
+          id: 'mezanino',
+          name: { pt: 'Sala de leitura no mezanino', en: 'Mezzanine reading lounge' },
+          description: {
+            pt: 'Sofá e poltronas em linho branco, com vista para as estantes do térreo.',
+            en: 'A white linen sofa and armchairs overlooking the ground-floor bookcases.',
+          },
+          boxes: [{ min: [-2.2, 3.2, -4.6], max: [2.2, 6.1, -0.85] }],
+        },
+      ],
+    },
   },
 ];
 

@@ -8,7 +8,8 @@ interface ViewerPanelProps {
   zones: ModelZone[];
   zoneBounds?: Map<string, Box3>;
   bounds?: Box3;
-  projectArea: number;
+  projectArea?: number;
+  projectTitle: string;
   selected: string | null;
   hovered: string | null;
   mode: DisplayMode;
@@ -46,8 +47,19 @@ function Icon({ path }: { path: string }) {
 export function ViewerPanel(props: ViewerPanelProps) {
   const { t, l, lang } = useI18n();
   const [open, setOpen] = useState(false);
-  const { zones, zoneBounds, bounds, projectArea, selected, hovered, mode, showWalls, sectionAxis, sectionRatio } =
-    props;
+  const {
+    zones,
+    zoneBounds,
+    bounds,
+    projectArea,
+    projectTitle,
+    selected,
+    hovered,
+    mode,
+    showWalls,
+    sectionAxis,
+    sectionRatio,
+  } = props;
 
   // On small screens the panel is a drawer: close it once a zone is chosen.
   const selectZone = (zoneId: string | null) => {
@@ -186,7 +198,7 @@ export function ViewerPanel(props: ViewerPanelProps) {
       <div className="viewer-info" aria-live="polite">
         <p className="viewer-info__eyebrow">{selectedZone ? t('viewer.parts') : t('viewer.whole')}</p>
         <h3 className="viewer-info__title">
-          {selectedZone ? l(selectedZone.name) : `${number.format(projectArea)} m²`}
+          {selectedZone ? l(selectedZone.name) : projectArea ? `${number.format(projectArea)} m²` : projectTitle}
         </h3>
         {selectedZone && <p className="viewer-info__text">{l(selectedZone.description)}</p>}
         {size && (
