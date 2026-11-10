@@ -46,6 +46,7 @@ Before committing: `npx prettier --check .`, `npm run lint` and `npm run build`.
 - **Measuring the layout:** components that read refs from parent or sibling elements must do it in `useEffect`, not `useLayoutEffect`. When a lazy component is already cached, it mounts before those refs are attached.
 - **GitHub Pages:** the site lives under `/architecture-portfolio/`. Use `import.meta.env.BASE_URL` for public files. The workflow copies `index.html` to `404.html` so direct links work.
 - **Optimizing models:** SketchUp exports are heavily instanced and often carry hidden-layer junk (scale figures, annotation markers) and ceilings that hide the interior; check the result visually from above before wiring zones. Compressed models use quantized attributes and `EXT_meshopt_compression`, so viewer code must not write world coordinates back into the loaded attributes.
+- **Crop boxes must clear the walls:** `--crop` tests triangle centroids, so a boundary running through a wall's thickness deletes its outer face and half of each window reveal (this broke the back wall of Cozinha Marinho, which was then patched by hand in the optimized model). Leave a few centimeters beyond the outer wall faces.
 - **Testing:** to check visually, use Playwright (Chromium) with the build served by route interception. Google Fonts can be blocked in the cloud environment, so abort those requests and use `waitUntil: 'domcontentloaded'`.
 
 ## Pending (confirm with the user)
