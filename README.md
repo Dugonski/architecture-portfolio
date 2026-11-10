@@ -156,7 +156,7 @@ As faces fora de qualquer ambiente formam a base do projeto: o piso continua vis
 
 ## Deploy
 
-O site é publicado no GitHub Pages a cada push na `main`, pelo workflow `.github/workflows/deploy.yml`.
+O site é publicado no GitHub Pages manualmente, pelo workflow `.github/workflows/deploy.yml`. Os pushes na `main` não publicam nada: quando quiser atualizar o site, vá em _Actions → Deploy to GitHub Pages → Run workflow_ (branch `main`).
 
 - **Configuração (uma única vez):** em _Settings → Pages → Build and deployment_, escolha _Source: GitHub Actions_.
 - **Caminho base:** o workflow usa o nome do repositório (`/architecture-portfolio/`) e copia o `index.html` para `404.html`, para que links diretos como `/projetos/brinquedoteca` funcionem.

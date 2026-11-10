@@ -9,7 +9,7 @@ Talk to the user in **Brazilian Portuguese**. Code, comments and commit messages
 - **Short commits:** one subject line in Conventional Commits format (`feat:`, `fix:`, `docs:`, `chore:`, `ci:`, `style:`), with no body.
 - **No Claude attribution:** no `Co-Authored-By`, session links or "Generated with" lines in commits or PRs, and no AI model names anywhere in the repo.
 - **Author:** `Dugonski <guidugonski1@gmail.com>` (set `git config user.name/user.email` if the environment uses something else).
-- **Branches:** `main` deploys automatically to GitHub Pages. Experiments go on a separate branch (e.g. `feat/...`) and are only merged when the user approves.
+- **Branches:** pushing to `main` does **not** deploy. GitHub Pages is only published when the user runs the `Deploy to GitHub Pages` workflow manually (Actions tab); don't trigger it yourself unless asked. Experiments go on a separate branch (e.g. `feat/...`) and are only merged when the user approves.
 
 ## Commands
 
