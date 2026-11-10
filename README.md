@@ -130,6 +130,12 @@ node scripts/cap-walls.mjs public/models/livraria.glb public/models/livraria.glb
 
 O script corta o modelo 3 cm abaixo do topo (`--depth`), fecha os contornos das paredes e móveis cortados e ignora superfícies abertas, como painéis ripados e vidros.
 
+Para remover partes exportadas junto que não fazem parte do projeto, use `remove-region.mjs` com uma área em metros (x0,z0,x1,z1, nas coordenadas do modelo otimizado). Os triângulos que cruzam a borda são recortados, então paredes longas e pisos não ficam sobrando. Na Cozinha Marinho, ele removeu os dois cômodos atrás da parede da TV:
+
+```bash
+node scripts/remove-region.mjs public/models/cozinha-marinho.glb public/models/cozinha-marinho.glb --box=0.8,-5.6,5,-3.45
+```
+
 Os arquivos originais ficam em `models-src/`, que não é versionado.
 
 ### Ambientes selecionáveis
